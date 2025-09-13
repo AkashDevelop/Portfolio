@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akash S - AI Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8b5cf6;
+            --secondary: #a855f7;
+            --accent: #c084fc;
+            --dark: #1e1b4b;
+            --light: #ffffff;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --glass: rgba(139, 92, 246, 0.1);
+            --glass-border: rgba(139, 92, 246, 0.2);
+            --shadow-primary: rgba(139, 92, 246, 0.3);
+            --shadow-secondary: rgba(168, 85, 247, 0.2);
+            --text-primary: #1e1b4b;
+            --text-secondary: #64748b;
+            --text-black: #000000;
+            --text-light-grey: #9ca3af;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+        }
+
+        /* HERO SECTION - Purple & White Theme */
+        .hero-section {
+            background: 
+                radial-gradient(ellipse at top, rgba(139, 92, 246, 0.15) 0%, transparent 70%),
+                radial-gradient(ellipse at bottom, rgba(168, 85, 247, 0.1) 0%, transparent 70%),
+                linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            perspective: 2000px;
+        }
+
+        /* ANIMATED PARTICLE CONSTELLATION */
+        .particle-constellation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: particleFloat 8s infinite linear;
+        }
+
+        .particle-large {
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.9) 0%, transparent 70%);
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+        }
+
+        .connection-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+            animation: connectionPulse 3s infinite ease-in-out;
+            transform-origin: left;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes connectionPulse {
+            0%, 100% { opacity: 0; transform: scaleX(0); }
+            50% { opacity: 1; transform: scaleX(1); }
+        }
+
+        /* NEURAL NETWORK BACKGROUND */
+        .neural-network {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(2px 2px at 100px 50px, rgba(139, 92, 246, 0.2), transparent),
+                radial-gradient(2px 2px at 200px 150px, rgba(168, 85, 247, 0.2), transparent),
+                radial-gradient(2px 2px at 50px 200px, rgba(192, 132, 252, 0.2), transparent),
+                radial-gradient(1px 1px at 300px 100px, rgba(139, 92, 246, 0.1), transparent);
+            background-size: 400px 300px, 350px 250px, 300px 200px, 250px 150px;
+            animation: networkPulse 10s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        @keyframes networkPulse {
+            0%, 100% { background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%; }
+            50% { background-position: 100% 100%, 0% 100%, 100% 0%, 0% 0%; }
+        }
+
+        /* HOLOGRAPHIC BUTTONS */
+        .btn-holographic {
+            position: relative;
+            display: inline-block;
+            padding: 18px 36px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(168, 85, 247, 0.8));
+            color: white;
+            text-decoration: none;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 16px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            overflow: hidden;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .btn-holographic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-holographic::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: conic-gradient(from 0deg, #8b5cf6, #a855f7, #c084fc, #8b5cf6);
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: holographicRotate 4s linear infinite;
+        }
+
+        .btn-holographic:hover {
+            transform: translateY(-8px) rotateX(10deg) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(139, 92, 246, 0.4),
+                0 10px 20px rgba(168, 85, 247, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-holographic:hover::before {
+            left: 100%;
+        }
+
+        .btn-holographic:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes holographicRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* CRYSTAL SECONDARY BUTTON */
+        .btn-crystal {
+            position: relative;
+            display: inline-block;
+            padding: 16px 32px;
+            background: rgba(139, 92, 246, 0.1);
+            backdrop-filter: blur(15px);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-crystal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.1));
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .btn-crystal span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-crystal:hover {
+            transform: translateY(-6px) rotateX(8deg);
+            box-shadow: 
+                0 15px 30px rgba(139, 92, 246, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            color: white;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(168, 85, 247, 0.8));
+        }
+
+        .btn-crystal:hover::before {
+            transform: translateY(0);
+        }
+
+        /* COMPACT FLOATING ISLANDS - SECTIONS */
+        .floating-island {
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 20px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 
+                0 15px 30px rgba(139, 92, 246, 0.1),
+                0 5px 15px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-island::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(139, 92, 246, 0.05) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .floating-island:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(3deg);
+            box-shadow: 
+                0 25px 50px rgba(139, 92, 246, 0.15),
+                0 10px 25px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+        .floating-island:hover::before {
+            opacity: 1;
+        }
+
+        /* KINETIC TYPOGRAPHY */
+        .kinetic-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGradientShift 8s ease-in-out infinite;
+            transition: all 0.4s ease;
+        }
+
+        .kinetic-text:hover {
+            animation-duration: 0.5s;
+            transform: translateZ(20px);
+        }
+
+        @keyframes textGradientShift {
+            0%, 100% { background-position: 0% 0%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+        }
+
+        /* COMPACT QUANTUM SKILL ITEMS */
+        .quantum-skill {
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            color: var(--text-primary);
+        }
+
+        .quantum-skill::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(139, 92, 246, 0.1), transparent, rgba(168, 85, 247, 0.1), transparent);
+            transform: rotate(0deg);
+            transition: transform 2s ease;
+            opacity: 0;
+        }
+
+        .quantum-skill:hover {
+            transform: translateY(-8px) rotateX(10deg) scale(1.05);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+            box-shadow: 
+                0 15px 30px rgba(139, 92, 246, 0.2),
+                0 5px 15px rgba(139, 92, 246, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .quantum-skill:hover::before {
+            opacity: 1;
+            transform: rotate(360deg);
+        }
+
+        .quantum-skill h4 {
+            position: relative;
+            z-index: 2;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+        }
+
+        /* COMPACT HOLOGRAPHIC CARDS */
+        .holo-card {
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 20px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 15px 30px rgba(139, 92, 246, 0.08),
+                0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .holo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 1s ease;
+        }
+
+        .holo-card:hover {
+            transform: translateY(-15px) rotateX(8deg) rotateY(5deg);
+            box-shadow: 
+                0 30px 60px rgba(139, 92, 246, 0.15),
+                0 15px 30px rgba(139, 92, 246, 0.1),
+                0 8px 16px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .holo-card:hover::before {
+            left: 100%;
+        }
+
+        /* NEURAL CONTACT ICONS */
+        .neural-icon {
+            width: 50px;
+            height: 50px;
+            background: 
+                linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(168, 85, 247, 0.8));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .neural-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(0deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .neural-icon:hover {
+            transform: translateY(-6px) rotateX(15deg) rotateY(10deg) scale(1.08);
+            box-shadow: 
+                0 15px 30px rgba(139, 92, 246, 0.3),
+                0 8px 16px rgba(168, 85, 247, 0.2),
+                inset 0 2px 4px rgba(255, 255, 255, 0.2);
+        }
+
+        .neural-icon:hover::before {
+            opacity: 1;
+            transform: rotate(360deg);
+        }
+
+        /* COMPACT MORPHING TECH BADGES */
+        .morph-badge {
+            background: rgba(139, 92, 246, 0.1);
+            backdrop-filter: blur(10px);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 18px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .morph-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(168, 85, 247, 0.7));
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .morph-badge span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .morph-badge:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 6px 12px rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.4);
+            color: white;
+        }
+
+        .morph-badge:hover::before {
+            transform: translateY(0);
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            z-index: 1000;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-primary);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dark-section {
+            background: 
+                radial-gradient(ellipse at center, rgba(139, 92, 246, 0.05) 0%, transparent 70%),
+                linear-gradient(135deg, rgba(248, 250, 252, 0.5) 0%, rgba(255, 255, 255, 0.8) 100%);
+        }
+
+        /* PROFILE IMAGE */
+        .profile-hologram {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.6s ease;
+        }
+
+        .profile-hologram::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: conic-gradient(from 0deg, #8b5cf6, #a855f7, #c084fc, #8b5cf6);
+            border-radius: 50%;
+            z-index: -1;
+            animation: hologramSpin 4s linear infinite;
+        }
+
+        .profile-hologram:hover {
+            transform: scale(1.05) translateZ(20px);
+            box-shadow: 
+                0 25px 50px rgba(139, 92, 246, 0.2),
+                0 15px 30px rgba(168, 85, 247, 0.1);
+        }
+
+        .profile-hologram img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .profile-hologram:hover img {
+            transform: scale(1.08);
+        }
+
+        @keyframes hologramSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* TIMELINE */
+        .quantum-timeline {
+            position: relative;
+        }
+
+        .quantum-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-left: 60px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -42px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            background: radial-gradient(circle, var(--primary), var(--accent));
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 
+                0 4px 12px rgba(139, 92, 246, 0.3),
+                0 0 20px rgba(139, 92, 246, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.2);
+            box-shadow: 
+                0 6px 18px rgba(139, 92, 246, 0.4),
+                0 0 30px rgba(139, 92, 246, 0.2);
+        }
+
+        /* FORM ELEMENTS */
+        .quantum-form {
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.08);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            transition: all 0.4s ease;
+            font-family: 'Inter', sans-serif;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+
+        .form-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 
+                0 0 0 3px rgba(139, 92, 246, 0.1),
+                0 6px 12px rgba(139, 92, 246, 0.08);
+            transform: translateY(-1px);
+        }
+
+        /* UTILITY CLASSES */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glow {
+            box-shadow: 
+                0 0 20px rgba(139, 92, 246, 0.2),
+                0 0 40px rgba(139, 92, 246, 0.1);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .section { padding: 60px 20px; }
+            .profile-hologram { width: 200px; height: 200px; }
+            .hero-section { text-align: center; }
+            .particle { transform: scale(0.7); }
+            .btn-holographic { padding: 12px 24px; font-size: 14px; }
+            .floating-island { margin: 15px 0; }
+            .quantum-skill { padding: 12px; }
+            .quantum-skill h4 { font-size: 13px; }
+            .morph-badge { padding: 6px 12px; font-size: 11px; }
+            .neural-icon { width: 45px; height: 45px; font-size: 18px; }
+        }
+
+        /* ADVANCED ANIMATIONS */
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeUp 1.5s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.2s; }
+        .stagger-2 { transition-delay: 0.4s; }
+        .stagger-3 { transition-delay: 0.6s; }
+        .stagger-4 { transition-delay: 0.8s; }
+
+        /* COLOR CLASSES FOR CONTENT */
+        .purple-text { color: var(--primary); }
+        .purple-light-text { color: var(--secondary); }
+        .black-text { color: var(--text-black); }
+        .light-grey-text { color: var(--text-light-grey); }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="py-6 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-gradient font-space-grotesk">
+                Akash S
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hidden md:flex items-center">
+                <a href="https://drive.google.com/uc?export=download&id=1eYGLkFYl3Tvqme46Kgg0zzgyXvY6ivA3" 
+                   class="btn-crystal">
+                    <span><i class="fas fa-download" style="margin-right:8px;"></i>Resume</span>
+                </a>
+            </div>
+            <div class="md:hidden">
+                <button class="text-purple-600">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Revolutionary Hero Section -->
+    <section id="home" class="hero-section">
+        <!-- Neural Network Background -->
+        <div class="neural-network"></div>
+        
+        <!-- Particle Constellation -->
+        <div class="particle-constellation" id="particleSystem">
+            <!-- Particles will be generated by JavaScript -->
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+            <div class="animate-fade-up">
+                <p class="purple-text font-semibold mb-4 tracking-wider text-lg font-space-grotesk">Hi There</p>
+                <h1 class="text-5xl md:text-7xl font-bold mb-8 font-space-grotesk">
+                    <span class="kinetic-text">I'm Akash,</span>
+                    <span class="block text-gradient typing-effect" id="typingText">
+                        akash
+                    </span>
+                </h1>
+                <p class="text-xl black-text mb-10 leading-relaxed max-w-lg">
+                    Passionate AI/ML Engineer specializing in computer vision, deep learning, and intelligent automation.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="#projects" class="btn-holographic text-center">
+                        <i class="fas fa-rocket mr-2"></i>Explore My Work
+                    </a>
+                    <a href="#contact" class="btn-crystal text-center">
+                        <span><i class="fas fa-paper-plane mr-2"></i>Let's Connect</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hidden md:flex justify-center animate-fade-up" style="animation-delay: 0.4s">
+                <div class="profile-hologram">
+                    <img src="https://i.ibb.co/27SWD2HF/IMG-3684.jpg" alt="Akash S - AI Engineer" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section dark-section reveal">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 kinetic-text font-space-grotesk">About Me</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-purple-300 mx-auto rounded-full glow"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="floating-island p-8 reveal stagger-1">
+                    <h3 class="text-3xl font-bold mb-6 font-space-grotesk text-gradient">AI/ML Engineer</h3>
+                    <p class="text-lg black-text mb-6 leading-relaxed">
+                        I'm an AI/DL Engineer with expertise in developing intelligent systems that solve real-world problems. 
+                        My experience spans computer vision, natural language processing, and deep learning applications.
+                    </p>
+                    <p class="text-lg black-text mb-8 leading-relaxed">
+                        From building RAG pipelines to deploying YOLO-based detection systems, I focus on creating scalable, 
+                        production-ready AI solutions that make a meaningful impact.
+                    </p>
+                    <a href="mailto:akashgautham06@gmail.com" class="btn-holographic">
+                        <i class="fas fa-envelope mr-2"></i>Get In Touch
+                    </a>
+                </div>
+                <div class="grid grid-cols-2 gap-3 reveal stagger-2">
+                    <div class="quantum-skill">
+                        <h4 class="font-semibold">Python</h4>
+                    </div>
+                    <div class="quantum-skill">
+                        <h4 class="font-semibold">MySQL</h4>
+                    </div>
+                    <div class="quantum-skill">
+                        <h4 class="font-semibold">PyTorch</h4>
+                    </div>
+                    <div class="quantum-skill">
+                        <h4 class="font-semibold"> Scikit-learn</h4>
+                    </div>
+                    <div class="quantum-skill">
+                        <h4 class="font-semibold">YOLO</h4>
+                    </div>
+                    <div class="quantum-skill">
+                        <h4 class="font-semibold">Computer Vision</h4>
+                    </div>
+                    <div class="quantum-skill">
+                        <h4 class="font-semibold">Statistics</h4>
+                    </div>
+                    <div class="quantum-skill">
+                        <h4 class="font-semibold">NLP</h4>
+                    </div>
+                    <div class="quantum-skill">
+                        <h4 class="font-semibold">LangChain</h4>
+                    </div>
+                    <div class="quantum-skill">
+                        <h4 class="font-semibold">Agentic AI</h4>
+                    </div>
+                                        <div class="quantum-skill">
+                        <h4 class="font-semibold">FastAPI</h4>
+                    </div>
+                    <div class="quantum-skill">
+                        <h4 class="font-semibold">AWS</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section reveal">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 kinetic-text font-space-grotesk">Featured Projects</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-purple-300 mx-auto rounded-full glow"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="holo-card p-6 reveal stagger-1">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold mb-3 font-space-grotesk text-gradient">LLM-powered FusionRAG Agentic System</h3>
+                        <p class="black-text leading-relaxed">
+                            RAG pipeline ingesting 200+ daily Federal Register documents into MySQL with async FastAPI endpoints and agentic LLM integration.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="morph-badge"><span>FastAPI</span></span>
+                        <span class="morph-badge"><span>MySQL</span></span>
+                        <span class="morph-badge"><span>Ollama</span></span>
+                        <span class="morph-badge"><span>Mistral 7B</span></span>
+                    </div>
+                    <a href="https://github.com/AkashDevelop/RAG_Agentic_System_using_ollama_mistral_7b" target="_blank" class="btn-holographic w-full text-center">
+                        <i class="fab fa-github mr-2"></i>View Project
+                    </a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="holo-card p-6 reveal stagger-2">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold mb-3 font-space-grotesk text-gradient">Advance Live Object Detection</h3>
+                        <p class="black-text leading-relaxed">
+                            GPU-powered batch inference pipeline for live RTSP CCTV streams using YOLOv8m and Tesseract with 90% accuracy.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="morph-badge"><span>YOLOv8</span></span>
+                        <span class="morph-badge"><span>Tesseract</span></span>
+                        <span class="morph-badge"><span>OpenCV</span></span>
+                        <span class="morph-badge"><span>GPU</span></span>
+                    </div>
+                    <a href="https://github.com/AkashDevelop/Advance_Live_Detection_with_OpenCV" target="_blank" class="btn-holographic w-full text-center">
+                        <i class="fab fa-github mr-2"></i>View Project
+                    </a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="holo-card p-6 reveal stagger-3">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold mb-3 font-space-grotesk text-gradient">Advanced Football Intelligence with DeepLearning</h3>
+                        <p class="black-text leading-relaxed">
+                            YOLOv8-based tracking pipeline with 93% detection accuracy for real-time player analytics and automated speed calculations.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="morph-badge"><span>YOLOv8</span></span>
+                        <span class="morph-badge"><span>OpenCV</span></span>
+                        <span class="morph-badge"><span>Analytics</span></span>
+                        <span class="morph-badge"><span>Real-time</span></span>
+                    </div>
+                    <a href="https://github.com/AkashDevelop/Advanced_Football_Intelligence_with_DeepLearning_YOLO_model_and_OpenCV" target="_blank" class="btn-holographic w-full text-center">
+                        <i class="fab fa-github mr-2"></i>View Project
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section dark-section reveal">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 kinetic-text font-space-grotesk">Professional Experience</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-purple-300 mx-auto rounded-full glow"></div>
+            </div>
+            <div class="quantum-timeline">
+                <div class="timeline-item reveal stagger-1">
+                    <div class="timeline-dot"></div>
+                    <div class="floating-island p-8">
+                        <div class="mb-6">
+                            <h3 class="text-2xl font-bold mb-2 font-space-grotesk black-text">Associate AI Engineer</h3>
+                            <p class="purple-text font-semibold text-lg">Qurinom Solutions</p>
+                            <p class="light-grey-text">Hyderabad, Telangana • June 2025 - Present</p>
+                        </div>
+                        <ul class="black-text space-y-3 leading-relaxed">
+                            <li>• Engineered and deployed 12+ high-performance FastAPI endpoints with integrated ML models, achieving sub-250ms response times and serving 500+ active users</li>
+                            <li>• Developed an intelligent LLM-powered web scraping pipeline across 100+ religious data sources with 92% data accuracy and automated quality validation</li>
+                            <li>• Built and optimized real-time object detection systems using YOLOv8 on dedicated inference servers, processing live video streams with minimal latency</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section reveal">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 kinetic-text font-space-grotesk">Let's Work Together</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-purple-300 mx-auto rounded-full glow"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="floating-island p-8 reveal stagger-1">
+                    <h3 class="text-2xl font-bold mb-6 font-space-grotesk black-text">Get In Touch</h3>
+                    <p class="text-lg black-text mb-8 leading-relaxed">
+                     I'm always open to new opportunities in AI. If you're working on unique projects
+                      in DeepLearning , computer vision, or NLP, I'd be glad to connect.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <a href="mailto:akashgautham06@gmail.com" class="neural-icon">
+                                <i class="fab fa-google"></i>
+                            </a>
+                            <div>
+                                <p class="font-semibold text-lg font-space-grotesk purple-text">Email</p>
+                                <p class="black-text">akashgautham06@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <a href="https://linkedin.com/in/akash061" target="_blank" rel="noopener noreferrer" class="neural-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <div>
+                                <p class="font-semibold text-lg font-space-grotesk purple-text">LinkedIn</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <a href="https://github.com/AkashDevelop" target="_blank" rel="noopener noreferrer" class="neural-icon">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <div>
+                                <p class="font-semibold text-lg font-space-grotesk purple-text">GitHub</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex flex-wrap items-center gap-4">
+                            <a href="https://drive.google.com/uc?export=download&id=1eYGLkFYl3Tvqme46Kgg0zzgyXvY6ivA3"
+                               target="_blank" rel="noopener noreferrer"
+                               class="btn-holographic inline-flex items-center gap-3 px-6 py-3">
+                                <i class="fas fa-download"></i>
+                                <span>Download Resume</span>
+                            </a>
+
+                            <a href="https://drive.google.com/file/d/1eYGLkFYl3Tvqme46Kgg0zzgyXvY6ivA3/view?usp=sharing"
+                               target="_blank" rel="noopener noreferrer"
+                               class="btn-crystal inline-flex items-center gap-2 px-5 py-3">
+                                <span><i class="fas fa-external-link-alt mr-2"></i>Preview</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quantum-form reveal stagger-2">
+                    <h3 class="text-xl font-bold mb-6 font-space-grotesk text-gradient">Send Message</h3>
+                    <form id="contactForm">
+                        <input type="text" placeholder="Your Name" class="form-input" required>
+                        <input type="email" placeholder="Your Email" class="form-input" required>
+                        <input type="text" placeholder="Subject" class="form-input" required>
+                        <textarea placeholder="Your Message" rows="5" class="form-input" required></textarea>
+                        <button type="submit" class="btn-holographic w-full">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="mailto:akashgautham06@gmail.com" class="neural-icon">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="https://linkedin.com/in/akash061" target="_blank" class="neural-icon">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/AkashDevelop" target="_blank" class="neural-icon">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <p class="purple-text text-lg font-space-grotesk"> Akash S</p>
+            <p class="purple-light-text mt-2">Just developing some meaningful projects</p>
+        </div>
+    </footer>
+
+    <script>
+        // REVOLUTIONARY PARTICLE SYSTEM
+        class ParticleSystem {
+            constructor() {
+                this.container = document.getElementById('particleSystem');
+                this.particles = [];
+                this.connections = [];
+                this.mouse = { x: 0, y: 0 };
+                this.init();
+            }
+
+            init() {
+                this.createParticles();
+                this.animate();
+                this.bindEvents();
+            }
+
+            createParticles() {
+                const particleCount = window.innerWidth > 768 ? 50 : 25;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = Math.random() > 0.7 ? 'particle particle-large' : 'particle';
+                    
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight;
+                    const speed = 0.5 + Math.random() * 1.5;
+                    const size = Math.random() > 0.7 ? 4 : 2;
+                    
+                    particle.style.left = x + 'px';
+                    particle.style.top = y + 'px';
+                    particle.style.animationDelay = Math.random() * 8 + 's';
+                    particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+                    
+                    this.container.appendChild(particle);
+                    
+                    this.particles.push({
+                        element: particle,
+                        x: x,
+                        y: y,
+                        vx: (Math.random() - 0.5) * speed,
+                        vy: (Math.random() - 0.5) * speed,
+                        size: size
+                    });
+                }
+            }
+
+            createConnections() {
+                // Remove existing connections
+                this.connections.forEach(conn => conn.remove());
+                this.connections = [];
+
+                // Create new connections between nearby particles
+                for (let i = 0; i < this.particles.length; i++) {
+                    for (let j = i + 1; j < this.particles.length; j++) {
+                        const p1 = this.particles[i];
+                        const p2 = this.particles[j];
+                        const distance = Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
+                        
+                        if (distance < 150) {
+                            const line = document.createElement('div');
+                            line.className = 'connection-line';
+                            
+                            const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+                            line.style.left = p1.x + 'px';
+                            line.style.top = p1.y + 'px';
+                            line.style.width = distance + 'px';
+                            line.style.transform = `rotate(${angle}rad)`;
+                            line.style.opacity = (150 - distance) / 150 * 0.3;
+                            
+                            this.container.appendChild(line);
+                            this.connections.push(line);
+                        }
+                    }
+                }
+            }
+
+            animate() {
+                // Update particle positions
+                this.particles.forEach(particle => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    
+                    // Bounce off edges
+                    if (particle.x <= 0 || particle.x >= window.innerWidth) particle.vx *= -1;
+                    if (particle.y <= 0 || particle.y >= window.innerHeight) particle.vy *= -1;
+                    
+                    // Mouse interaction
+                    const mouseDistance = Math.sqrt((this.mouse.x - particle.x) ** 2 + (this.mouse.y - particle.y) ** 2);
+                    if (mouseDistance < 100) {
+                        const force = (100 - mouseDistance) / 100;
+                        particle.vx += (particle.x - this.mouse.x) * force * 0.01;
+                        particle.vy += (particle.y - this.mouse.y) * force * 0.01;
+                    }
+                    
+                    particle.element.style.left = particle.x + 'px';
+                    particle.element.style.top = particle.y + 'px';
+                });
+
+                // Update connections every few frames for performance
+                if (Math.random() > 0.95) {
+                    this.createConnections();
+                }
+
+                requestAnimationFrame(() => this.animate());
+            }
+
+            bindEvents() {
+                window.addEventListener('mousemove', (e) => {
+                    this.mouse.x = e.clientX;
+                    this.mouse.y = e.clientY;
+                });
+            }
+        }
+
+        // ENHANCED SCROLL ANIMATIONS
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Animate stagger elements
+                    const staggerElements = entry.target.querySelectorAll('.stagger-1, .stagger-2, .stagger-3, .stagger-4');
+                    staggerElements.forEach((el, index) => {
+                        setTimeout(() => {
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
+                        }, index * 300);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // NAVIGATION SCROLL EFFECT
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            const scrolled = window.pageYOffset;
+            
+            if (scrolled > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.backdropFilter = 'blur(30px)';
+                nav.style.boxShadow = '0 8px 32px rgba(139, 92, 246, 0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.backdropFilter = 'blur(20px)';
+                nav.style.boxShadow = 'none';
+            }
+            
+            // Update active nav link
+            const sections = document.querySelectorAll('section');
+            let current = '';
+            
+            sections.forEach(section => {
+                if (scrolled >= section.offsetTop - 300) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // SMOOTH SCROLLING
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                
+                // Button animation
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+                
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // TYPING EFFECT
+        function typeWriter() {
+            const element = document.getElementById('typingText');
+            const text = 'AI Engineer';
+            let i = 0;
+            
+            element.textContent = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 150);
+                } else {
+                    // Keep cursor blinking
+                    setInterval(() => {
+                        element.style.borderRightColor = 
+                            element.style.borderRightColor === 'transparent' 
+                            ? 'rgba(139, 92, 246, 0.8)' 
+                            : 'transparent';
+                    }, 600);
+                }
+            }
+            
+            setTimeout(type, 800);
+        }
+
+        // FORM SUBMISSION
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalContent = submitBtn.innerHTML;
+            
+            // Loading state
+            submitBtn.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+                    <div style="width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-top: 2px solid white; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                    <span>Sending...</span>
+                </div>
+            `;
+            submitBtn.disabled = true;
+            
+            // Simulate sending
+            setTimeout(() => {
+                submitBtn.innerHTML = `
+                    <i class="fas fa-check-circle mr-2"></i>Message Sent!
+                `;
+                submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalContent;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                    this.reset();
+                }, 3000);
+            }, 2000);
+        });
+
+        // SCROLL PROGRESS INDICATOR
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #8b5cf6, #a855f7, #c084fc);
+            z-index: 10000;
+            transition: width 0.2s ease;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        `;
+        document.body.appendChild(progressBar);
+
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+
+        // CURSOR TRAIL EFFECT
+        class CursorTrail {
+            constructor() {
+                this.dots = [];
+                this.mouse = { x: 0, y: 0 };
+                this.init();
+            }
+
+            init() {
+                // Create trail dots
+                for (let i = 0; i < 12; i++) {
+                    const dot = document.createElement('div');
+                    dot.style.cssText = `
+                        position: fixed;
+                        width: ${8 - i * 0.5}px;
+                        height: ${8 - i * 0.5}px;
+                        background: radial-gradient(circle, rgba(139, 92, 246, ${1 - i * 0.1}), transparent);
+                        border-radius: 50%;
+                        pointer-events: none;
+                        z-index: 9999;
+                        transition: all 0.1s ease;
+                        transform: translate(-50%, -50%);
+                    `;
+                    document.body.appendChild(dot);
+                    this.dots.push({ element: dot, x: 0, y: 0 });
+                }
+
+                this.bindEvents();
+                this.animate();
+            }
+
+            bindEvents() {
+                document.addEventListener('mousemove', (e) => {
+                    this.mouse.x = e.clientX;
+                    this.mouse.y = e.clientY;
+                });
+            }
+
+            animate() {
+                let x = this.mouse.x;
+                let y = this.mouse.y;
+
+                this.dots.forEach((dot, index) => {
+                    dot.x += (x - dot.x) * 0.3;
+                    dot.y += (y - dot.y) * 0.3;
+                    dot.element.style.left = dot.x + 'px';
+                    dot.element.style.top = dot.y + 'px';
+                    x = dot.x;
+                    y = dot.y;
+                });
+
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // QUANTUM LOADING STATES FOR BUTTONS
+        function addQuantumLoading() {
+            document.querySelectorAll('.btn-holographic, .btn-crystal').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') && this.getAttribute('href').startsWith('http')) {
+                        // Create quantum ripple effect
+                        const ripple = document.createElement('div');
+                        const rect = this.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        ripple.style.cssText = `
+                            position: absolute;
+                            width: 4px;
+                            height: 4px;
+                            left: ${x}px;
+                            top: ${y}px;
+                            background: radial-gradient(circle, rgba(255,255,255,0.8), transparent);
+                            border-radius: 50%;
+                            transform: scale(0);
+                            animation: quantumRipple 0.8s ease-out;
+                            pointer-events: none;
+                        `;
+                        
+                        this.style.position = 'relative';
+                        this.appendChild(ripple);
+                        
+                        setTimeout(() => ripple.remove(), 800);
+                    }
+                });
+            });
+        }
+
+        // CSS ANIMATIONS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes quantumRipple {
+                to {
+                    transform: scale(25);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+            }
+
+            .typing-effect {
+                border-right: 3px solid rgba(139, 92, 246, 0.8);
+                animation: blink 1s infinite;
+            }
+
+            @keyframes blink {
+                0%, 50% { border-color: transparent; }
+                51%, 100% { border-color: rgba(139, 92, 246, 0.8); }
+            }
+
+            /* Font family utilities */
+            .font-space-grotesk {
+                font-family: 'Space Grotesk', sans-serif;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // INITIALIZE EVERYTHING
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize particle system
+            if (window.innerWidth > 768) {
+                new ParticleSystem();
+            }
+
+            // Initialize cursor trail
+            if (window.innerWidth > 768) {
+                new CursorTrail();
+            }
+
+            // Initialize typing effect
+            typeWriter();
+
+            // Add quantum loading to buttons
+            addQuantumLoading();
+
+            // Stagger animation for hero elements
+            const heroElements = document.querySelectorAll('#home .animate-fade-up');
+            heroElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.3}s`;
+                el.style.animationDuration = '1.2s';
+            });
+
+            // Initialize navigation animation
+            const nav = document.querySelector('nav');
+            nav.style.transform = 'translateY(-100%)';
+            nav.style.transition = 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+            setTimeout(() => {
+                nav.style.transform = 'translateY(0)';
+            }, 500);
+        });
+
+        // PERFORMANCE OPTIMIZATIONS
+        let ticking = false;
+        
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            
+            // Parallax effect for neural network
+            const neural = document.querySelector('.neural-network');
+            if (neural) {
+                neural.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+            
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // INTERSECTION OBSERVER FOR PERFORMANCE
+        const lazyImages = document.querySelectorAll('img');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.style.opacity = '0';
+                    img.style.transition = 'opacity 0.6s ease';
+                    setTimeout(() => {
+                        img.style.opacity = '1';
+                    }, 100);
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        lazyImages.forEach(img => imageObserver.observe(img));
+
+        // RESIZE HANDLER
+        window.addEventListener('resize', function() {
+            // Reinitialize particle system on resize
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.particle, .connection-line').forEach(el => el.remove());
+            }
+        });
+
+        // ACCESSIBILITY ENHANCEMENTS
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('using-keyboard');
+            }
+        });
+
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('using-keyboard');
+        });
+
+        // Add focus styles for keyboard navigation
+        const focusStyle = document.createElement('style');
+        focusStyle.textContent = `
+            .using-keyboard *:focus {
+                outline: 2px solid #8b5cf6 !important;
+                outline-offset: 2px !important;
+            }
+        `;
+        document.head.appendChild(focusStyle);
+    </script>
+</body>
+</html>
