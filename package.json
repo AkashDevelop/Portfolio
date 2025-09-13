@@ -1,0 +1,81 @@
+{
+  "name": "akash-ai-engineer-portfolio",
+  "version": "1.0.0",
+  "description": "Professional AI/ML Engineer Portfolio showcasing expertise in computer vision, deep learning, and intelligent automation systems",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000 --host=localhost --entry-file=index.html",
+    "build": "npm run minify-css && npm run minify-js",
+    "minify-css": "cleancss -o dist/styles.min.css src/styles.css",
+    "minify-js": "terser src/script.js -o dist/script.min.js -c -m",
+    "serve": "http-server -p 8080 -c-1",
+    "dev": "live-server --port=3001 --watch=.",
+    "preview": "serve -s . -l 4000",
+    "deploy": "gh-pages -d .",
+    "lint-html": "htmlhint index.html",
+    "validate": "html-validate index.html",
+    "optimize": "npm run minify-css && npm run minify-js && imagemin src/images/* --out-dir=dist/images",
+    "test": "echo \"Portfolio loaded successfully\" && exit 0"
+  },
+  "keywords": [
+    "portfolio",
+    "ai-engineer",
+    "machine-learning",
+    "computer-vision",
+    "deep-learning",
+    "fastapi",
+    "python",
+    "yolo",
+    "tensorflow",
+    "pytorch",
+    "web-development",
+    "responsive-design",
+    "modern-ui"
+  ],
+  "author": {
+    "name": "Akash S",
+    "email": "akashgautham06@gmail.com",
+    "url": "https://github.com/AkashDevelop"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AkashDevelop/portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AkashDevelop/portfolio/issues"
+  },
+  "homepage": "https://akashdevelop.github.io/portfolio",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "http-server": "^14.1.1",
+    "serve": "^14.2.1",
+    "clean-css-cli": "^5.6.2",
+    "terser": "^5.24.0",
+    "htmlhint": "^1.1.4",
+    "html-validate": "^8.7.4",
+    "imagemin": "^8.0.1",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-mozjpeg": "^10.0.0",
+    "gh-pages": "^6.1.0"
+  },
+  "dependencies": {
+    "font-awesome": "^4.7.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "files": [
+    "index.html",
+    "assets/",
+    "images/",
+    "dist/"
+  ]
+}
